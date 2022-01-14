@@ -212,7 +212,7 @@ instance Bitraversable These where
     bitraverse f g (These x y) = These <$> f x <*> g y
 
 instance (Semigroup a) => Applicative (These a) where
-    pure = That 
+    pure = That
     This  a   <*> _         = This a
     That    _ <*> This  b   = This b
     That    f <*> That    x = That (f x)
@@ -222,7 +222,7 @@ instance (Semigroup a) => Applicative (These a) where
     These a f <*> These b x = These (a <> b) (f x)
 
 instance (Semigroup a) => Monad (These a) where
-    return = pure 
+    return = pure
     This  a   >>= _ = This a
     That    x >>= k = k x
     These a x >>= k = case k x of
